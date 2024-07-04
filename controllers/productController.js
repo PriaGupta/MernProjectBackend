@@ -1,6 +1,7 @@
 const Product = require('../models/productModel');
 
 const uploadProduct = async (req, res) => {
+
     try {
         const product = new Product(req.body);
         await product.save();
@@ -24,8 +25,8 @@ const getProducts = async (req, res) => {
 
 const updateProduct = async (req, res) => {
     try {
-      const { name, price, description, imageUrl } = req.body;
-      const product = await Product.findByIdAndUpdate(req.params.id, { name, price, description, imageUrl },
+      const { name, price,category, description, image } = req.body;
+      const product = await Product.findByIdAndUpdate(req.params.id, { name, price,category, description, image },
          { new: true });
       res.status(200).json(product);
     } catch (error) {
